@@ -8,16 +8,7 @@ import { DemoRoutingModule } from './demo-routing.module';
 import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    DemoComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    DemoRoutingModule,
-    FormsModule
-  ]
+    declarations: [DemoComponent],
+    imports: [CommonModule, SharedModule, DemoRoutingModule, FormsModule],
 })
-export class DemoModule {
-
-}
+export class DemoModule {}

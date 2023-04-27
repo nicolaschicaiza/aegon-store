@@ -8,12 +8,7 @@ import { MaterialModule } from './../material/material.module';
 import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
-  declarations: [OrderComponent],
-  imports: [
-    CommonModule,
-    OrderRoutingModule,
-    SharedModule,
-    MaterialModule
-  ]
+    declarations: [OrderComponent],
+    imports: [CommonModule, OrderRoutingModule, SharedModule, MaterialModule],
 })
-export class OrderModule { }
+export class OrderModule {}

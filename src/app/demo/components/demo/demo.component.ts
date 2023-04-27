@@ -1,32 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-demo',
-  templateUrl: './demo.component.html',
-  styleUrls: ['./demo.component.scss']
+    selector: 'app-demo',
+    templateUrl: './demo.component.html',
+    styleUrls: ['./demo.component.scss'],
 })
 export class DemoComponent implements OnInit {
+    title = 'platzi-store';
 
-  title = 'platzi-store';
+    items = ['nicolas', 'julian', 'perez'];
 
-  items = ['nicolas', 'julian', 'perez'];
+    objeto = {};
 
-  objeto = {};
+    power = 10;
 
-  power = 10;
+    ngOnInit() {
+        // code
+    }
 
-  ngOnInit() {
-    // code
-  }
+    addItem() {
+        this.items.push('nuevo item');
+    }
 
-  addItem() {
-    this.items.push('nuevo item');
-  }
-
-  deleteItem(index: number) {
-    this.items.splice(index, 1);
-  }
-
-
-
+    deleteItem(index: number) {
+        this.items.splice(index, 1);
+    }
 }

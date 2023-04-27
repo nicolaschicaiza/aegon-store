@@ -12,24 +12,19 @@ import { CartComponent } from './components/cart/cart.component';
 import { MaterialModule } from './../material/material.module';
 
 @NgModule({
-  declarations: [
-    ExponentialPipe,
-    HighlightDirective,
-    HeaderComponent,
-    FooterComponent,
-    CartComponent
-  ],
-  exports: [
-    ExponentialPipe,
-    HighlightDirective,
-    HeaderComponent,
-    FooterComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MaterialModule,
-    ReactiveFormsModule
-  ]
+    declarations: [
+        ExponentialPipe,
+        HighlightDirective,
+        HeaderComponent,
+        FooterComponent,
+        CartComponent,
+    ],
+    exports: [
+        ExponentialPipe,
+        HighlightDirective,
+        HeaderComponent,
+        FooterComponent,
+    ],
+    imports: [CommonModule, RouterModule, MaterialModule, ReactiveFormsModule],
 })
-export class SharedModule { }
+export class SharedModule {}

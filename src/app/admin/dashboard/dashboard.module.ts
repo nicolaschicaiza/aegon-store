@@ -6,16 +6,13 @@ import { MaterialModule } from './../../material/material.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-
 @NgModule({
-  declarations: [
-    DashboardComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    DashboardRoutingModule
-  ]
+    declarations: [DashboardComponent],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        DashboardRoutingModule,
+    ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

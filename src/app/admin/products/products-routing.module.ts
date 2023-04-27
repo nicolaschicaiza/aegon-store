@@ -5,24 +5,23 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductCreateComponent } from './components/product-create/product-create.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 
-
 const routes: Routes = [
-  {
-    path: '',
-    component: ProductsComponent
-  },
-  {
-    path: 'create',
-    component: ProductCreateComponent
-  },
-  {
-    path: 'edit/:id',
-    component: ProductEditComponent
-  },
+    {
+        path: '',
+        component: ProductsComponent,
+    },
+    {
+        path: 'create',
+        component: ProductCreateComponent,
+    },
+    {
+        path: 'edit/:id',
+        component: ProductEditComponent,
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class ProductsRoutingModule { }
+export class ProductsRoutingModule {}
