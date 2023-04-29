@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    FormControl,
-    FormGroup,
-    Validators,
-    FormBuilder,
-} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-basic-form',
@@ -16,15 +11,27 @@ export class BasicFormComponent implements OnInit {
 
     private buildForm() {
         this.form = this.formBuilder.group({
-            name: ['', [Validators.required, Validators.maxLength(10)]],
-            email: [''],
+            name: [
+                '',
+                [
+                    Validators.required,
+                    Validators.maxLength(10),
+                    // Validators.pattern(/^[a-zA-Zá-úñÑ ]+$/),
+                    // ^((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])(\.(?!$)|$)){4}$ Expresión regular para validar una IP
+                    Validators.pattern(/^([Aa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}\s?){2,4}$/),
+                ],
+            ],
+            email: ['', [Validators.required, Validators.email]],
             phone: ['', Validators.required],
             color: ['#000000'],
             date: [''],
-            age: [12],
+            age: [
+                0,
+                [Validators.required, Validators.min(18), Validators.max(100)],
+            ],
             category: ['category-2'],
             tag: [''],
-            agree: [false],
+            agree: [false, [Validators.requiredTrue]],
             gender: [''],
             zone: [''],
         });

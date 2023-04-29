@@ -1,8 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="save($event)">
     <p>
         Name: {{ nameField.valid }}
-        <!-- [class.is-valid]="isNameFieldValid" -->
-        <!-- [class.is-invalid]="isNameFieldInvalid" -->
         <input
             [ngClass]="{
                 'is-valid': isNameFieldValid,
@@ -14,22 +12,22 @@
         <button [disabled]="nameField.invalid" (click)="getNameValue()">
             Get value
         </button>
-        <!-- <code> -->
-        <!--     <pre> -->
-        <!--     {{ nameField | json }} -->
-        <!--     </pre> -->
-        <!-- </code> -->
     </p>
 
     <div class="messages" [class.active]="isNameFieldInvalid">
         <p>
-            <strong *ngIf="nameField.touched && nameField.hasError('required')"
+            <strong *ngIf="nameField.hasError('required')"
                 >Este campo es requerido</strong
             >
         </p>
         <p>
-            <strong *ngIf="nameField.touched && nameField.hasError('maxlength')"
+            <strong *ngIf="nameField.hasError('maxlength')"
                 >Debe tener máximo 10 caracteres</strong
+            >
+        </p>
+        <p>
+            <strong *ngIf="nameField.hasError('pattern')"
+                >No puede contener caracteres invalidos</strong
             >
         </p>
     </div>
@@ -38,6 +36,22 @@
         Email: {{ emailField.value }}
         <input type="email" formControlName="email" />
     </p>
+    <div
+        class="messages"
+        [class.active]="emailField.touched && emailField.invalid"
+    >
+        <p>
+            <strong
+                *ngIf="emailField.touched && emailField.hasError('required')"
+                >Este campo es requerido</strong
+            >
+        </p>
+        <p>
+            <strong *ngIf="emailField.touched && emailField.hasError('email')"
+                >Este no es un email valido</strong
+            >
+        </p>
+    </div>
 
     <p>
         Phone: {{ phoneField.value }}
@@ -76,6 +90,23 @@
         Age: {{ ageField.value }}
         <input type="number" formControlName="age" />
     </p>
+    <div class="messages" [class.active]="ageField.touched && ageField.invalid">
+        <p>
+            <strong *ngIf="ageField.touched && ageField.hasError('required')"
+                >Este campo es requerido</strong
+            >
+        </p>
+        <p>
+            <strong *ngIf="ageField.touched && ageField.hasError('min')"
+                >Debe ser mayor de edad</strong
+            >
+        </p>
+        <p>
+            <strong *ngIf="ageField.touched && ageField.hasError('max')"
+                >Debe ser menor a 100 años</strong
+            >
+        </p>
+    </div>
 
     <p>
         Category: {{ categoryField.value }}
@@ -109,6 +140,14 @@
         Agree: {{ agreeField.value }}
         <input type="checkbox" formControlName="agree" />
     </p>
+    <div
+        class="messages"
+        [class.active]="agreeField.touched && agreeField.invalid"
+    >
+        <p>
+            <strong>Debes aceptar</strong>
+        </p>
+    </div>
 
     <p>
         Gender: {{ genderField.value }}
