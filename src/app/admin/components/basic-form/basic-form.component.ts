@@ -11,16 +11,28 @@ export class BasicFormComponent implements OnInit {
 
     private buildForm() {
         this.form = this.formBuilder.group({
-            name: [
-                '',
-                [
-                    Validators.required,
-                    Validators.maxLength(10),
-                    // Validators.pattern(/^[a-zA-Zá-úñÑ ]+$/),
-                    // ^((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])(\.(?!$)|$)){4}$ Expresión regular para validar una IP
-                    Validators.pattern(/^([Aa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}\s?){2,4}$/),
+            fullName: this.formBuilder.group({
+                name: [
+                    '',
+                    [
+                        Validators.required,
+                        Validators.maxLength(10),
+                        Validators.pattern(
+                            /^([Aa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}\s?){2,4}$/
+                        ),
+                    ],
                 ],
-            ],
+                last: [
+                    '',
+                    [
+                        Validators.required,
+                        Validators.maxLength(10),
+                        Validators.pattern(
+                            /^([Aa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}\s?){2,4}$/
+                        ),
+                    ],
+                ],
+            }),
             email: ['', [Validators.required, Validators.email]],
             phone: ['', Validators.required],
             color: ['#000000'],
@@ -32,7 +44,7 @@ export class BasicFormComponent implements OnInit {
             category: ['category-2'],
             tag: [''],
             agree: [false, [Validators.requiredTrue]],
-            gender: [''],
+            gender: ['', [Validators.requiredTrue]],
             zone: [''],
         });
     }
@@ -41,16 +53,7 @@ export class BasicFormComponent implements OnInit {
         this.buildForm();
     }
 
-    ngOnInit(): void {
-        this.nameField.valueChanges.subscribe((value) => {
-            // escuchar cambios de forma reactiva por Control
-            console.log(value);
-        });
-        this.form.valueChanges.subscribe((value) => {
-            // escuchar cambios de forma reactiva para un formulario completo
-            console.log(value);
-        });
-    }
+    ngOnInit(): void {}
 
     get isNameFieldValid() {
         return this.nameField.touched && this.nameField.valid;
@@ -60,8 +63,20 @@ export class BasicFormComponent implements OnInit {
         return this.nameField.touched && this.nameField.invalid;
     }
 
+    get isLastFieldValid() {
+        return this.lastField.touched && this.lastField.valid;
+    }
+
+    get isLastFieldInvalid() {
+        return this.lastField.touched && this.lastField.invalid;
+    }
+
     get nameField() {
-        return this.form.get('name');
+        return this.form.get('fullName.name');
+    }
+
+    get lastField() {
+        return this.form.get('fullName.last');
     }
 
     get emailField() {

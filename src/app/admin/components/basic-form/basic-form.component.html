@@ -1,35 +1,66 @@
 <form [formGroup]="form" (ngSubmit)="save($event)">
-    <p>
-        Name: {{ nameField.valid }}
-        <input
-            [ngClass]="{
-                'is-valid': isNameFieldValid,
-                'is-invalid': isNameFieldInvalid
-            }"
-            type="text"
-            formControlName="name"
-        />
-        <button [disabled]="nameField.invalid" (click)="getNameValue()">
-            Get value
-        </button>
-    </p>
+    <div formGroupName="fullName">
+        <p>
+            Name: {{ nameField.valid }}
+            <input
+                [ngClass]="{
+                    'is-valid': isNameFieldValid,
+                    'is-invalid': isNameFieldInvalid
+                }"
+                type="text"
+                formControlName="name"
+            />
+            <button [disabled]="nameField.invalid" (click)="getNameValue()">
+                Get value
+            </button>
+        </p>
 
-    <div class="messages" [class.active]="isNameFieldInvalid">
+        <div class="messages" [class.active]="isNameFieldInvalid">
+            <p>
+                <strong *ngIf="nameField.hasError('required')"
+                    >Este campo es requerido</strong
+                >
+            </p>
+            <p>
+                <strong *ngIf="nameField.hasError('maxlength')"
+                    >Debe tener máximo 10 caracteres</strong
+                >
+            </p>
+            <p>
+                <strong *ngIf="nameField.hasError('pattern')"
+                    >No puede contener caracteres invalidos</strong
+                >
+            </p>
+        </div>
         <p>
-            <strong *ngIf="nameField.hasError('required')"
-                >Este campo es requerido</strong
-            >
+            Last: {{ lastField.valid }}
+            <input
+                [ngClass]="{
+                    'is-valid': isLastFieldValid,
+                    'is-invalid': isLastFieldInvalid
+                }"
+                type="text"
+                formControlName="last"
+            />
         </p>
-        <p>
-            <strong *ngIf="nameField.hasError('maxlength')"
-                >Debe tener máximo 10 caracteres</strong
-            >
-        </p>
-        <p>
-            <strong *ngIf="nameField.hasError('pattern')"
-                >No puede contener caracteres invalidos</strong
-            >
-        </p>
+
+        <div class="messages" [class.active]="isLastFieldInvalid">
+            <p>
+                <strong *ngIf="lastField.hasError('required')"
+                    >Este campo es requerido</strong
+                >
+            </p>
+            <p>
+                <strong *ngIf="lastField.hasError('maxlength')"
+                    >Debe tener máximo 10 caracteres</strong
+                >
+            </p>
+            <p>
+                <strong *ngIf="lastField.hasError('pattern')"
+                    >No puede contener caracteres invalidos</strong
+                >
+            </p>
+        </div>
     </div>
 
     <p>
@@ -179,6 +210,14 @@
             Other
         </label>
     </p>
+    <div
+        class="messages"
+        [class.active]="genderField.touched && genderField.invalid"
+    >
+        <p>
+            <strong>Elige genero</strong>
+        </p>
+    </div>
 
     <p>
         Zone: {{ zoneField.value }}
