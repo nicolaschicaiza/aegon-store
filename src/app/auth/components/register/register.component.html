@@ -52,10 +52,20 @@
                         <mat-label>Confirm Password</mat-label>
                         <input
                             placeholder="password"
-                            formControlName="password"
+                            formControlName="confirmPassword"
                             matInput
                             type="password"
                         />
+                        <div
+                            *ngIf="
+                                form.get('confirmPassword').touched &&
+                                form.errors
+                            "
+                        >
+                            <mat-error *ngIf="form.hasError('match_password')">
+                                Contraseñas no son iguales
+                            </mat-error>
+                        </div>
                     </mat-form-field>
                 </div>
             </div>
