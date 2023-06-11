@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+    FormControl,
     UntypedFormBuilder,
     UntypedFormGroup,
     Validators,
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
         this.buildForm();
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     register(event: Event) {
         event.preventDefault();
@@ -52,10 +53,30 @@ export class RegisterComponent implements OnInit {
                     ],
                 ],
                 confirmPassword: ['', [Validators.required]],
+                type: ['company', [Validators.required]],
+                companyName: ['', [Validators.required]]
             },
             {
                 validators: MyValidators.matchPasswords,
             }
         );
+
+        this.typeField.valueChanges.subscribe(value => {
+            console.log(value);
+            if (value === 'company') {
+                this.companyNameField.setValidators([Validators.required]);
+            } else {
+                this.companyNameField.setValidators(null);
+            }
+            this.companyNameField.updateValueAndValidity();
+        });
+    }
+
+    get typeField() {
+        return this.form.get('type') as FormControl;
+    }
+
+    get companyNameField() {
+        return this.form.get('companyName') as FormControl;
     }
 }
